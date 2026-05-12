@@ -90,3 +90,11 @@ body {
 .animate-float-slow {
   animation: float 8s cubic-bezier(0.37, 0, 0.63, 1) 1s infinite;
 }
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

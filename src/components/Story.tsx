@@ -181,18 +181,18 @@ export default function Story() {
 
       <div className="relative">
         {/* Header */}
-        <div className="pt-28 md:pt-40 pb-6 md:pb-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
+        <div className="pt-20 md:pt-40 pb-4 md:pb-10 max-w-[1400px] mx-auto px-5 md:px-12 lg:px-16">
           <ScrollReveal>
             <div className="text-center max-w-3xl mx-auto">
-              <span className="inline-flex items-center gap-2 rounded-full bg-coral/10 px-4 py-1.5 text-[11px] uppercase tracking-[0.2em] font-medium text-coral mb-6">
+              <span className="inline-flex items-center gap-2 rounded-full bg-coral/10 px-3 md:px-4 py-1 md:py-1.5 text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-medium text-coral mb-4 md:mb-6">
                 What&apos;s Inside
               </span>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tighter text-bark leading-[0.95]">
+              <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tighter text-bark leading-[0.95]">
                 Our Clean-Label Formula Starts
                 <br />
                 With <span className="text-honey">Regenerative Dairy.</span>
               </h2>
-              <p className="mt-6 text-lg text-cocoa-light leading-relaxed max-w-[55ch] mx-auto">
+              <p className="mt-4 md:mt-6 text-base md:text-lg text-cocoa-light leading-relaxed max-w-[55ch] mx-auto">
                 If you can&apos;t picture it on a farm, it&apos;s not in our pint.
                 Every ingredient is real, whole, and traceable.
               </p>
@@ -201,7 +201,7 @@ export default function Story() {
         </div>
 
         {/* Active Ingredient Diagram */}
-        <div className="pt-10 md:pt-16 pb-6 md:pb-10 max-w-[900px] mx-auto px-6 md:px-12 lg:px-16">
+        <div className="pt-6 md:pt-16 pb-4 md:pb-10 max-w-[900px] mx-auto px-4 md:px-12 lg:px-16">
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
@@ -223,67 +223,114 @@ export default function Story() {
         </div>
 
         {/* Ingredient Photo Selector */}
-        <div className="max-w-[1100px] mx-auto px-6 md:px-12 lg:px-16 pb-10 md:pb-16">
-          <div className="flex items-start justify-center gap-5 md:gap-10">
-            {allIngredients.map((ing, idx) => {
-              const isActive = idx === active;
-              const tabColor = svgColors[ing.color] ?? "#6EAFA5";
-              return (
-                <button
-                  key={ing.label}
-                  onClick={() => setActive(idx)}
-                  className="flex flex-col items-center gap-2 group"
-                >
-                  <motion.div
-                    className="rounded-full overflow-hidden flex-shrink-0"
-                    animate={{
-                      scale: isActive ? 1 : 0.85,
-                      opacity: isActive ? 1 : 0.5,
-                    }}
-                    transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
-                    style={{
-                      boxShadow: isActive
-                        ? `0 4px 20px ${tabColor}40`
-                        : "0 2px 8px rgba(0,0,0,0.06)",
-                      outline: isActive
-                        ? `3px solid ${tabColor}`
-                        : "3px solid transparent",
-                      outlineOffset: "2px",
-                    }}
+        <div className="pb-10 md:pb-16">
+          {/* Mobile: horizontal scroll */}
+          <div className="md:hidden overflow-x-auto scrollbar-hide -mx-2 px-6">
+            <div className="flex items-start gap-4 w-max px-2 pb-2">
+              {allIngredients.map((ing, idx) => {
+                const isActive = idx === active;
+                const tabColor = svgColors[ing.color] ?? "#6EAFA5";
+                return (
+                  <button
+                    key={ing.label}
+                    onClick={() => setActive(idx)}
+                    className="flex flex-col items-center gap-1.5 flex-shrink-0"
                   >
-                    <Image
-                      src={ing.image}
-                      alt={ing.label}
-                      width={160}
-                      height={160}
-                      className="w-[72px] h-[72px] md:w-[110px] md:h-[110px] object-cover rounded-full"
-                    />
-                  </motion.div>
-                  <motion.span
-                    className="text-xs md:text-[13px] font-medium tracking-tight text-center leading-tight max-w-[110px]"
-                    animate={{
-                      color: isActive ? tabColor : "#3B2F2F80",
-                    }}
-                    transition={{ duration: 0.4 }}
+                    <motion.div
+                      className="rounded-full overflow-hidden"
+                      animate={{
+                        scale: isActive ? 1 : 0.88,
+                        opacity: isActive ? 1 : 0.45,
+                      }}
+                      transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
+                      style={{
+                        boxShadow: isActive ? `0 4px 16px ${tabColor}40` : "none",
+                        outline: isActive ? `2.5px solid ${tabColor}` : "2.5px solid transparent",
+                        outlineOffset: "2px",
+                      }}
+                    >
+                      <Image
+                        src={ing.image}
+                        alt={ing.label}
+                        width={100}
+                        height={100}
+                        className="w-[52px] h-[52px] object-cover rounded-full"
+                      />
+                    </motion.div>
+                    <motion.span
+                      className="text-[10px] font-semibold tracking-tight text-center leading-tight w-[56px]"
+                      animate={{ color: isActive ? tabColor : "#3B2F2F60" }}
+                      transition={{ duration: 0.35 }}
+                    >
+                      {ing.label}
+                    </motion.span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Desktop: centered row */}
+          <div className="hidden md:block max-w-[1100px] mx-auto px-12 lg:px-16">
+            <div className="flex items-start justify-center gap-10">
+              {allIngredients.map((ing, idx) => {
+                const isActive = idx === active;
+                const tabColor = svgColors[ing.color] ?? "#6EAFA5";
+                return (
+                  <button
+                    key={ing.label}
+                    onClick={() => setActive(idx)}
+                    className="flex flex-col items-center gap-2 group"
                   >
-                    {ing.label}
-                  </motion.span>
-                </button>
-              );
-            })}
+                    <motion.div
+                      className="rounded-full overflow-hidden flex-shrink-0"
+                      animate={{
+                        scale: isActive ? 1 : 0.85,
+                        opacity: isActive ? 1 : 0.5,
+                      }}
+                      transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+                      style={{
+                        boxShadow: isActive
+                          ? `0 4px 20px ${tabColor}40`
+                          : "0 2px 8px rgba(0,0,0,0.06)",
+                        outline: isActive
+                          ? `3px solid ${tabColor}`
+                          : "3px solid transparent",
+                        outlineOffset: "2px",
+                      }}
+                    >
+                      <Image
+                        src={ing.image}
+                        alt={ing.label}
+                        width={160}
+                        height={160}
+                        className="w-[110px] h-[110px] object-cover rounded-full"
+                      />
+                    </motion.div>
+                    <motion.span
+                      className="text-[13px] font-medium tracking-tight text-center leading-tight max-w-[110px]"
+                      animate={{ color: isActive ? tabColor : "#3B2F2F80" }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      {ing.label}
+                    </motion.span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
         {/* Marquee */}
-        <div className="pt-8 md:pt-12 pb-28 md:pb-40">
+        <div className="pt-6 md:pt-12 pb-12 md:pb-20">
           <ScrollReveal>
-            <div className="text-center max-w-3xl mx-auto px-6 md:px-12 mb-12 md:mb-16">
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tighter text-bark leading-[0.95]">
+            <div className="text-center max-w-3xl mx-auto px-5 md:px-12 mb-8 md:mb-16">
+              <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl font-semibold tracking-tighter text-bark leading-[0.95]">
                 ...And Ingredients You Can
                 <br />
                 <span className="text-coral">Actually Pronounce.</span>
               </h2>
-              <p className="mt-6 text-lg text-cocoa-light leading-relaxed max-w-[50ch] mx-auto">
+              <p className="mt-4 md:mt-6 text-base md:text-lg text-cocoa-light leading-relaxed max-w-[50ch] mx-auto">
                 Every single ingredient is real, whole, and traceable. No
                 &ldquo;natural flavors.&rdquo; No mystery blends. What you read
                 is what you eat.
@@ -297,7 +344,7 @@ export default function Story() {
             <motion.div
               animate={{ x: ["0%", "-50%"] }}
               transition={{ x: { repeat: Infinity, repeatType: "loop", duration: 30, ease: "linear" } }}
-              className="flex gap-5 w-max"
+              className="flex gap-3 md:gap-5 w-max"
             >
               {[...marqueeIngredients, ...marqueeIngredients].map((item, idx) => (
                 <IngredientPill key={`${item.name}-${idx}`} {...item} />
@@ -305,13 +352,13 @@ export default function Story() {
             </motion.div>
           </div>
 
-          <div className="relative overflow-hidden py-4 mt-4">
+          <div className="relative overflow-hidden py-4 mt-3 md:mt-4">
             <div className="absolute left-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-r from-cream-dark to-transparent z-10" />
             <div className="absolute right-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-l from-cream-dark to-transparent z-10" />
             <motion.div
               animate={{ x: ["-50%", "0%"] }}
               transition={{ x: { repeat: Infinity, repeatType: "loop", duration: 35, ease: "linear" } }}
-              className="flex gap-5 w-max"
+              className="flex gap-3 md:gap-5 w-max"
             >
               {[...marqueeIngredients, ...marqueeIngredients].reverse().map((item, idx) => (
                 <IngredientPill key={`rev-${item.name}-${idx}`} {...item} />
@@ -456,33 +503,44 @@ function RadialIngredient({
       </div>
 
       {/* Mobile */}
-      <div className="md:hidden flex flex-col items-center w-full">
-        <div className="rounded-full p-2" style={{ border: `2px dashed ${sc}40` }}>
+      <div className="md:hidden flex flex-col items-center w-full px-4">
+        <div className="relative">
           <div
-            className="w-32 h-32 rounded-full overflow-hidden"
-            style={{ boxShadow: `0 6px 24px ${sc}25` }}
+            className="absolute inset-0 rounded-full"
+            style={{
+              border: `2px dashed ${sc}35`,
+              transform: "scale(1.2)",
+            }}
+          />
+          <div
+            className="w-36 h-36 rounded-full overflow-hidden relative z-10"
+            style={{ boxShadow: `0 8px 32px ${sc}30` }}
           >
             <Image
               src={image} alt={title}
-              width={200} height={200}
+              width={240} height={240}
               className="w-full h-full object-cover"
             />
           </div>
         </div>
-        <h3 className="font-serif text-xl font-semibold text-bark tracking-tight text-center mt-4">
+        <h3 className="font-serif text-[22px] font-semibold text-bark tracking-tight text-center mt-5">
           {title}
         </h3>
-        {subtitle && <p className="text-sm text-warm-gray mt-1">{subtitle}</p>}
-        <div className="grid grid-cols-2 gap-x-6 gap-y-2.5 mt-5 w-full max-w-xs">
-          {[...leftBenefits, ...rightBenefits].map((b) => (
-            <div key={b} className="flex items-center gap-2">
-              <span
-                className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                style={{ backgroundColor: sc }}
-              />
-              <span className="text-sm font-medium text-bark">{b}</span>
-            </div>
-          ))}
+        {subtitle && (
+          <p className="text-[13px] text-warm-gray mt-1 text-center">{subtitle}</p>
+        )}
+        <div className="mt-5 w-full max-w-[300px]">
+          <div className="grid grid-cols-1 gap-2.5">
+            {[...leftBenefits, ...rightBenefits].map((b) => (
+              <div key={b} className="flex items-center gap-3">
+                <span
+                  className="w-2 h-2 rounded-full flex-shrink-0"
+                  style={{ backgroundColor: sc }}
+                />
+                <span className="text-[13.5px] font-medium text-bark leading-snug">{b}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -497,13 +555,13 @@ function IngredientPill({
   detail,
 }: (typeof marqueeIngredients)[0]) {
   return (
-    <div className="flex items-center gap-4 rounded-full bg-cream ring-1 ring-bark/5 pl-2 pr-6 py-2 shadow-[0_2px_8px_rgba(21,44,44,0.04)] flex-shrink-0">
-      <div className="w-12 h-12 rounded-full bg-honey/10 flex items-center justify-center">
-        <Icon size={20} weight="light" className="text-honey" />
+    <div className="flex items-center gap-3 md:gap-4 rounded-full bg-cream ring-1 ring-bark/5 pl-1.5 md:pl-2 pr-4 md:pr-6 py-1.5 md:py-2 shadow-[0_2px_8px_rgba(21,44,44,0.04)] flex-shrink-0">
+      <div className="w-9 h-9 md:w-12 md:h-12 rounded-full bg-honey/10 flex items-center justify-center">
+        <Icon size={18} weight="light" className="text-honey md:!text-[20px]" />
       </div>
       <div>
-        <p className="text-sm font-semibold text-bark whitespace-nowrap">{name}</p>
-        <p className="text-xs text-warm-gray whitespace-nowrap">{detail}</p>
+        <p className="text-xs md:text-sm font-semibold text-bark whitespace-nowrap">{name}</p>
+        <p className="text-[10px] md:text-xs text-warm-gray whitespace-nowrap">{detail}</p>
       </div>
     </div>
   );

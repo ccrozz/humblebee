@@ -49,7 +49,7 @@ const competitors = [
 
 export default function CleanLabel() {
   return (
-    <section className="py-28 md:py-40 bg-cream-dark relative overflow-hidden">
+    <section className="pt-16 md:pt-24 pb-28 md:pb-40 bg-cream-dark relative overflow-hidden">
       <div className="absolute inset-0">
         <HoneycombBg color="#6EAFA5" opacity={0.13} scale={0.8} filled fillOpacity={0.03} />
         <div className="absolute top-[30%] left-[50%] w-[50vw] h-[50vw] rounded-full bg-seafoam/[0.04] blur-[120px]" />
