@@ -4,7 +4,6 @@ import Products from "@/components/Products";
 import Story from "@/components/Story";
 import CleanLabel from "@/components/CleanLabel";
 import Founders from "@/components/Founders";
-import Membership from "@/components/Membership";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -16,7 +15,6 @@ export default function Home() {
       <Story />
       <CleanLabel />
       <Founders />
-      <Membership />
       <Footer />
     </main>
   );

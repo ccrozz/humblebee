@@ -13,7 +13,15 @@ const competitors = [
     gums: false,
     sugarAlcohols: false,
     artificial: false,
-    price: "$8-$10",
+  },
+  {
+    brand: "Ben & Jerry's",
+    highlight: false,
+    protein: "4-5g",
+    sweetener: "Cane Sugar / Corn Syrup",
+    gums: true,
+    sugarAlcohols: false,
+    artificial: true,
   },
   {
     brand: "Halo Top",
@@ -23,27 +31,15 @@ const competitors = [
     gums: true,
     sugarAlcohols: true,
     artificial: true,
-    price: "$5-$7",
   },
   {
-    brand: "Enlightened",
+    brand: "Häagen-Dazs",
     highlight: false,
-    protein: "7-8g",
-    sweetener: "Erythritol + Stevia",
-    gums: true,
-    sugarAlcohols: true,
-    artificial: true,
-    price: "$5-$7",
-  },
-  {
-    brand: "Ice Cream for Bears",
-    highlight: false,
-    protein: "8-10g",
-    sweetener: "Monk Fruit",
-    gums: true,
+    protein: "4-5g",
+    sweetener: "Cane Sugar",
+    gums: false,
     sugarAlcohols: false,
-    artificial: true,
-    price: "$8-$10",
+    artificial: false,
   },
 ];
 
@@ -98,9 +94,6 @@ export default function CleanLabel() {
                       </th>
                       <th className="text-center py-5 px-4 text-xs uppercase tracking-[0.15em] text-warm-gray font-medium">
                         Artificial
-                      </th>
-                      <th className="text-right py-5 px-6 text-xs uppercase tracking-[0.15em] text-warm-gray font-medium">
-                        Price / Pint
                       </th>
                     </tr>
                   </thead>
@@ -187,15 +180,6 @@ export default function CleanLabel() {
                               />
                             )}
                           </div>
-                        </td>
-                        <td className="py-5 px-6 text-right">
-                          <span
-                            className={`text-sm font-medium ${
-                              comp.highlight ? "text-bark" : "text-cocoa-light"
-                            }`}
-                          >
-                            {comp.price}
-                          </span>
                         </td>
                       </tr>
                     ))}
