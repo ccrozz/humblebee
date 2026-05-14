@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
 import HoneycombBg from "./HoneycombBg";
 import {
@@ -48,11 +49,15 @@ export default function Footer() {
         <ScrollReveal>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 pb-16 border-b border-cream/8">
             <div className="lg:col-span-4">
-              <div className="flex items-center gap-3 mb-6">
-                <HumbleBeeIconLight />
-                <span className="font-serif text-2xl font-semibold text-cream tracking-tight">
-                  Humble Bee
-                </span>
+              <div className="mb-6">
+                <Image
+                  src="/humble-bee-logo.png?v=7"
+                  alt="Humble Bee Protein Ice Cream"
+                  width={1024}
+                  height={1024}
+                  unoptimized
+                  className="h-20 w-auto md:h-24"
+                />
               </div>
               <p className="text-base text-warm-gray-light leading-relaxed max-w-[35ch]">
                 Clean Protein. Real Ingredients. No Shortcuts. High-protein ice cream
@@ -159,35 +164,5 @@ function FooterLinkGroup({
         ))}
       </ul>
     </div>
-  );
-}
-
-function HumbleBeeIconLight() {
-  return (
-    <svg
-      width="32"
-      height="32"
-      viewBox="0 0 32 32"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M16 4L28 12V24L16 28L4 24V12L16 4Z"
-        fill="#6EAFA5"
-        fillOpacity="0.15"
-        stroke="#C8943E"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M16 10L22 14V22L16 24L10 22V14L16 10Z"
-        fill="#C8943E"
-        fillOpacity="0.3"
-        stroke="#6EAFA5"
-        strokeWidth="1"
-        strokeLinejoin="round"
-      />
-      <circle cx="16" cy="17" r="3" fill="#C8943E" />
-    </svg>
   );
 }

@@ -55,7 +55,7 @@ export default function Hero() {
               }}
               className="mt-8 text-lg md:text-xl text-cocoa-light leading-relaxed max-w-[50ch]"
             >
-              30-40g of clean protein per pint. Sweetened with raw honey and
+              40+ grams of clean protein per pint. Sweetened with raw honey and
               organic maple syrup. No gums, no sugar alcohols, no artificial
               anything. Just real ice cream that works as hard as you do.
             </motion.p>

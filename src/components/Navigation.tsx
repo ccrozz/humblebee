@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { List, X } from "@phosphor-icons/react";
 
@@ -34,10 +35,17 @@ export default function Navigation() {
       >
         <a
           href="#"
-          className="flex items-center gap-2 pl-3 pr-2 font-serif text-lg font-semibold tracking-tight text-bark"
+          className="flex shrink-0 items-center pl-2 pr-1 sm:pl-3 sm:pr-2"
         >
-          <HumbleBeeIcon />
-          <span className="hidden sm:inline">Humble Bee</span>
+          <Image
+            src="/humble-bee-logo.png?v=7"
+            alt="Humble Bee Protein Ice Cream"
+            width={1024}
+            height={1024}
+            priority
+            unoptimized
+            className="h-10 w-auto sm:h-11"
+          />
         </a>
 
         <div className="hidden md:flex items-center gap-0.5 mx-2">
@@ -135,35 +143,5 @@ export default function Navigation() {
         )}
       </AnimatePresence>
     </>
-  );
-}
-
-function HumbleBeeIcon() {
-  return (
-    <svg
-      width="28"
-      height="28"
-      viewBox="0 0 32 32"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M16 4L28 12V24L16 28L4 24V12L16 4Z"
-        fill="#6EAFA5"
-        fillOpacity="0.12"
-        stroke="#C8943E"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M16 10L22 14V22L16 24L10 22V14L16 10Z"
-        fill="#C8943E"
-        fillOpacity="0.25"
-        stroke="#6EAFA5"
-        strokeWidth="1"
-        strokeLinejoin="round"
-      />
-      <circle cx="16" cy="17" r="3" fill="#C8943E" />
-    </svg>
   );
 }
